@@ -9,6 +9,19 @@ class UserController extends AbstractActionController
     public function loginAction()
     {
         $form = $this->getServiceLocator()->get('CivUser\LoginForm');
+        
+        $request = $this->getRequest();
+        if($request->isPost()) {
+            $form->setData($request->getPost());
+            if($form->isValid()) {
+                $service = $this->getServiceLocator()->get('CivAuth\LoginService');
+                $credentials = $form()->getData();
+                $username = $credentials['username'];
+                $password = $credentials['password'];
+                $service->authenticate($username, $password);
+            }
+        }
+        
         return array(
             'form' => $form
         );
