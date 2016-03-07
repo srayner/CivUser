@@ -6,11 +6,11 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
-class PrivilegeFormFactory implements FactoryInterface
+class LoginFormFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $form = new UserForm();
+        $form = new LoginForm();
         $inputFilter = new UserInputFilter();
         $form->setHydrator(new ClassMethods)
              ->setInputFilter($inputFilter);

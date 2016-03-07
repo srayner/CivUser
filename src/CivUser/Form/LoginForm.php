@@ -4,13 +4,17 @@ namespace CivUser\Form;
 
 use Zend\Form\Form;
 
-class UserForm extends Form
+class LoginForm extends Form
 {
     public function __construct()
     {
         parent::__construct();
         
-         // Username
+        $this->setAttributes(array(
+            'class' => 'form',
+        ));
+        
+        // Username
         $this->add(array(
             'name' => 'username',
             'options' => array(
@@ -18,7 +22,8 @@ class UserForm extends Form
             ),
             'attributes' => array(
                 'type' => 'text',
-                'class' => 'form-control input-sm'
+                'class' => 'form-control input-sm',
+                'id' => 'username-field',
             ), 
         ));
         
@@ -30,7 +35,8 @@ class UserForm extends Form
             ),
             'attributes' => array(
                 'type' => 'text',
-                'class' => 'form-control input-sm'
+                'class' => 'form-control input-sm',
+                'id' => 'password-field',
             ),
         ));
         

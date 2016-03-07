@@ -43,4 +43,14 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    
+    // Service config
+    'service_manager' => array(
+        'invokables' => array(
+            'CivUser\User' => 'CivUser\Entity\User',
+        ),
+        'factories' => array(
+            'CivUser\LoginForm' => 'CivUser\Form\LoginFormFactory',
+        ),
+    ),
 );

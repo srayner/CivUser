@@ -1,6 +1,6 @@
 <?php
 
-namespace CivAccess\Form;
+namespace CivUser\Form;
 
 use Zend\InputFilter\InputFilter;
 
