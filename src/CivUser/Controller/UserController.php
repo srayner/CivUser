@@ -14,7 +14,7 @@ class UserController extends AbstractActionController
         if($request->isPost()) {
             $form->setData($request->getPost());
             if($form->isValid()) {
-                $service = $this->getServiceLocator()->get('CivAuth\LoginService');
+                $service = $this->getServiceLocator()->get('CivUser\AuthService');
                 $credentials = $form()->getData();
                 $username = $credentials['username'];
                 $password = $credentials['password'];

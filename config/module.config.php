@@ -50,7 +50,8 @@ return array(
             'CivUser\User' => 'CivUser\Entity\User',
         ),
         'factories' => array(
-            'CivUser\LoginForm' => 'CivUser\Form\LoginFormFactory',
+            'CivUser\LoginForm'   => 'CivUser\Form\LoginFormFactory',
+            'CivUser\AuthService' => 'CivUser\Service\AuthServiceFactory',
         ),
     ),
 );
