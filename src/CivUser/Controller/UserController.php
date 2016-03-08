@@ -7,7 +7,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 class UserController extends AbstractActionController
 {
     public function loginAction()
-    {
+    {   
         $form = $this->getServiceLocator()->get('CivUser\LoginForm');
         
         $request = $this->getRequest();
@@ -18,7 +18,10 @@ class UserController extends AbstractActionController
                 $credentials = $form->getData();
                 $username = $credentials['username'];
                 $password = $credentials['password'];
-                $service->authenticate($username, $password);
+                if ($service->authenticate($username, $password)) {
+                    die($service->hasIdentity());
+                }
+                die(var_dump($service->hasIdentity()));
             }
         }
         

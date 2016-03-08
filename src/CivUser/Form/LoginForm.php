@@ -3,6 +3,7 @@
 namespace CivUser\Form;
 
 use Zend\Form\Form;
+use Zend\Form\Element;
 
 class LoginForm extends Form
 {
@@ -15,41 +16,31 @@ class LoginForm extends Form
         ));
         
         // Username
-        $this->add(array(
-            'name' => 'username',
-            'options' => array(
-                'label' => 'User Name',
-            ),
-            'attributes' => array(
-                'type' => 'text',
-                'class' => 'form-control input-sm',
-                'id' => 'username-field',
-            ), 
-        ));
+        $username = new Element\Text('username'); 
+        $username->setLabel('User Name');
+        $username->setAttributes(array(
+            'class' => 'form-control input-sm',
+            'id' => 'username-field',
+        )); 
+        $this->add($username);
         
         // Password
-        $this->add(array(
-            'name' => 'password',
-            'options' => array(
-                'label' => 'Password',
-            ),
-            'attributes' => array(
-                'type' => 'text',
-                'class' => 'form-control input-sm',
-                'id' => 'password-field',
-            ),
+        $password = new Element\Password('password');
+        $password->setLabel('Password');
+        $password->setAttributes(array(
+            'class' => 'form-control input-sm',
+            'id' => 'password-field', 
         ));
+        $this->add($password);
         
         // Submit button.
-        $this->add(array(
-            'name' => 'submit',
-            'attributes' => array(
-                'type'  => 'submit',
-                'value' => 'Add',
-                'id'    => 'submitbutton',
-                'class' => 'btn btn-sm btn-primary'
-            ),
+        $submit = new Element\Submit('submit');
+        $submit->setValue('Login');
+        $submit->setAttributes(array(
+            'id'    => 'submit',
+            'class' => 'btn btn-sm btn-primary'
         ));
+        $this->add($submit);
        
     }
 }
