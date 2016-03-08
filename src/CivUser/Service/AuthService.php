@@ -17,7 +17,7 @@ class AuthService
     {
         $authAdapter = new AuthAdapter(
             $this->dbAdapter,
-            'user',
+            'civ_user',
             'username',
             'password'
         );
