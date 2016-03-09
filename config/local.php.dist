@@ -1,0 +1,24 @@
+<?php
+
+return array(
+
+    'civuser' => array(
+        'adapter' => array(
+            'type' => 'dbtable',
+            'table' => 'user',
+            'identifier_field' => 'username',
+            'credential_field' => 'password',
+        ),
+        'ldap_adapter' => array(
+            'type' => 'ldap',
+            'host'                   => 'server.your.net',
+            'port'                   => '389',
+            'useStartTls'            => false,
+            'accountDomainName'      => 'your.net',
+            'accountDomainNameShort' => 'YN',
+            'accountCanonicalForm'   => 3,
+            'baseDn'                 => "DC=your,DC=net"
+        ),
+        
+    )
+);
