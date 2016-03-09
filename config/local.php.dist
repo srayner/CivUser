@@ -19,6 +19,6 @@ return array(
             'accountCanonicalForm'   => 3,
             'baseDn'                 => "DC=your,DC=net"
         ),
-        
-    )
+    ),
+    
 );

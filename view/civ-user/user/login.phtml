@@ -18,3 +18,7 @@
 
 <?php echo $this->form()->closeTag($form); ?>
 
+<?php if($this->message): ?>
+    <br>
+    <span class="alert alert-danger"><b>Error: </b><?php echo $this->message; ?></span>
+<?php endif; ?>

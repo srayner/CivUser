@@ -3,7 +3,6 @@
 namespace CivUser\Service;
 
 use Zend\Authentication\AuthenticationService as AuthService;
-use Zend\Authentication\Result as Result;
 
 class AuthService
 {
@@ -16,13 +15,16 @@ class AuthService
         $this->service = new AuthService();
     }
 
-    public function authenticate($identity, $credential)
+    public function authenticate($credentials)
     {   
-        $this->adapter->setIdentity($identity);
-        $this->adapter->setCredential($credential);
+        $this->adapter->setIdentity($credentials['username']);
+        $this->adapter->setCredential($credentials['password']);
         $result = $this->service->authenticate($this->adapter);
-        die(var_dump($result));
-        return ($result->getCode() == Result::SUCCESS);
+        
+        if ($result->isValid()) {
+            die(var_dump($this->adapter->getAccountObject()));
+        }
+        return $result->isValid();
     }
     
     public function hasIdentity()
@@ -30,4 +32,13 @@ class AuthService
         return $this->service->hasIdentity();
     }
     
+    public function clearIdentity()
+    {
+        $this->service->clearIdentity();
+    }
+    
+    public function getIdentity()
+    {
+        return $this->service->getIdentity();
+    }
 }

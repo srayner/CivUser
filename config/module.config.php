@@ -27,6 +27,16 @@ return array(
                     ),
                 ),
             ),
+            'profile' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/profile',
+                    'defaults' => array(
+                        'controller' => 'CivUser\Controller\User',
+                        'action'     => 'profile',
+                    ),
+                ),
+            ),
         ),
     ),
     
