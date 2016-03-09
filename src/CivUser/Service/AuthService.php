@@ -22,7 +22,9 @@ class AuthService
         $result = $this->service->authenticate($this->adapter);
         
         if ($result->isValid()) {
-            die(var_dump($this->adapter->getAccountObject()));
+            if (is_a($this->adapter, 'Zend\Authentication\Adapter\Ldap')) {
+                die(var_dump($this->adapter->getAccountObject()));
+            }
         }
         return $result->isValid();
     }
@@ -41,4 +43,6 @@ class AuthService
     {
         return $this->service->getIdentity();
     }
+    
+    
 }
