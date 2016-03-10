@@ -23,14 +23,7 @@ class AuthService
         $result = $this->service->authenticate($this->adapter);
         
         if ($result->isValid()) {
-            if (is_a($this->adapter, 'Zend\Authentication\Adapter\Ldap')) {
-                $fields = array('samaccountname', 'mail', 'displayname');
-                die(var_dump($this->adapter->getAccountObject($fields)));
-            }
-            if (is_a($this->adapter, 'Zend\Authentication\Adapter\DbTable\CallbackCheckAdapter')) {
-                $fields = array('username', 'email', 'display_name');
-                die(var_dump($this->adapter->getResultRowObject($fields)));
-            }
+            $this->identity = $this->adapter->getIdentityObject();
         }
         return $result->isValid();
     }
