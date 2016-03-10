@@ -8,6 +8,7 @@ class AuthService
 {
     protected $adapter;
     protected $service;
+    protected $identity;
     
     public function __construct($adapter)
     {
@@ -23,7 +24,12 @@ class AuthService
         
         if ($result->isValid()) {
             if (is_a($this->adapter, 'Zend\Authentication\Adapter\Ldap')) {
-                die(var_dump($this->adapter->getAccountObject()));
+                $fields = array('samaccountname', 'mail', 'displayname');
+                die(var_dump($this->adapter->getAccountObject($fields)));
+            }
+            if (is_a($this->adapter, 'Zend\Authentication\Adapter\DbTable\CallbackCheckAdapter')) {
+                $fields = array('username', 'email', 'display_name');
+                die(var_dump($this->adapter->getResultRowObject($fields)));
             }
         }
         return $result->isValid();
