@@ -5,8 +5,8 @@ namespace CivUser\Service;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-use CivUser\Adapter\Table;
-use CivUser\Adapter\Ldap;
+use CivUser\Adapter\TableAdapter;
+use CivUser\Adapter\LdapAdapter;
 
 class AuthServiceFactory implements FactoryInterface
 {
@@ -18,11 +18,11 @@ class AuthServiceFactory implements FactoryInterface
         
         if ($config['type'] == 'dbtable') {
             $dbAdapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
-            $authAdapter = new Table($dbAdapter, $config);
+            $authAdapter = new TableAdapter($dbAdapter, $config);
         }
         
         if ($config['type'] == 'ldap') {
-            $authAdapter = new Ldap($config);
+            $authAdapter = new LdapAdapter($config);
         }
 
         if (!$authAdapter) {

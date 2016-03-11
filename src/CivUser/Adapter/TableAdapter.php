@@ -3,6 +3,7 @@
 namespace CivUser\Adapter;
 
 use Zend\Authentication\Adapter\DbTable\CallbackCheckAdapter;
+use CivUser\Model\User;
 
 class TableAdapter extends CallbackCheckAdapter
 {
@@ -23,7 +24,7 @@ class TableAdapter extends CallbackCheckAdapter
     public function getIdentityObject()
     {
         $fields = array('username', 'email', 'display_name');
-        $stdObject = $this->adapter->getResultRowObject($fields);
+        $stdObject = $this->getResultRowObject($fields);
         $identityObject = New User();
         $identityObject->username      = $stdObject->username;
         $identityObject->email         = $stdObject->email;

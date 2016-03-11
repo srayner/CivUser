@@ -3,6 +3,7 @@
 namespace CivUser\Adapter;
 
 use Zend\Authentication\Adapter\Ldap;
+use CivUser\Model\User;
 
 class LdapAdapter extends Ldap
 {
@@ -28,7 +29,7 @@ class LdapAdapter extends Ldap
     public function getIdentityObject()
     {
         $fields = array('id', 'username', 'email', 'display_name');
-        $stdObject = $this->adapter->getAccountObject($fields);
+        $stdObject = $this->getAccountObject($fields);
         $identityObject = New User();
         $identityObject->id            = $stdObject->id;
         $identityObject->username      = $stdObject->username;
