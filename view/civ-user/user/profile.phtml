@@ -1,4 +1,6 @@
 <h1>Your Profile</h1>
 
+<div><?php echo $this->user->getDisplayName(); ?></div>
+<div><?php echo $this->user->getEmailAddress(); ?></div>
 <hr>
 <a class="btn btn-primary" href="<?php echo $this->url('logout'); ?>">Logout</a>

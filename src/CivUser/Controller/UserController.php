@@ -12,8 +12,14 @@ class UserController extends AbstractActionController
         if (!$service->hasIdentity()) {
             return $this->redirect()->toRoute('login');
         }
-        //die(var_dump($service->getIdentity()));
-        return array();   
+        
+        // mocking
+        $user = new \CivUser\Model\User;
+        $user->setDisplayName('Steve Rayner');
+        $user->setEmailAddress('srayner@civrays.com');
+        return array(
+            'user' => $user
+        );   
     }
     
     public function loginAction()
