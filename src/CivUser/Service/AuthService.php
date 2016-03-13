@@ -9,9 +9,11 @@ class AuthService
     protected $adapter;
     protected $service;
     protected $identity;
+    protected $mapper;
     
-    public function __construct($adapter)
+    public function __construct($adapter, $mapper)
     {
+        $this->mapper = $mapper;
         $this->adapter = $adapter;
         $this->service = new AuthService();
     }

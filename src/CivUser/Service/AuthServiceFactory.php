@@ -7,17 +7,19 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 use CivUser\Adapter\TableAdapter;
 use CivUser\Adapter\LdapAdapter;
+use CivUser\Model\Mapper;
+
 
 class AuthServiceFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $authAdapter = null;
+        $dbAdapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
         
         $config = $serviceLocator->get('Config')['civuser']['adapter'];
         
         if ($config['type'] == 'dbtable') {
-            $dbAdapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
             $authAdapter = new TableAdapter($dbAdapter, $config);
         }
         
@@ -29,6 +31,7 @@ class AuthServiceFactory implements FactoryInterface
             throw new Exception('No auth adapter supplied by application configuration.');
         }
         
-        return new AuthService($authAdapter);
+        $mapper = new Mapper('user', $dbAdapter);
+        return new AuthService($authAdapter, $mapper);
     }  
 }
