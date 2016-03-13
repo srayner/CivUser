@@ -45,5 +45,11 @@ class AuthService
         return $this->service->getIdentity();
     }
     
+    // for testing
+    public function persist($user)
+    {
+        return $this->mapper->persist($user);
+    }
+    
     
 }

@@ -52,5 +52,6 @@ class UserController extends AbstractActionController
         $service->clearIdentity();
         return $this->redirect()->toRoute('login');
     }
+    
 }
 

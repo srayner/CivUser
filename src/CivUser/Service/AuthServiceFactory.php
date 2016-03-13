@@ -31,7 +31,7 @@ class AuthServiceFactory implements FactoryInterface
             throw new Exception('No auth adapter supplied by application configuration.');
         }
         
-        $mapper = new Mapper('user', $dbAdapter);
+        $mapper = new Mapper('civ_user', $dbAdapter);
         return new AuthService($authAdapter, $mapper);
     }  
 }

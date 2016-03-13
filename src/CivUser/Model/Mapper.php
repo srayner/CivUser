@@ -2,7 +2,7 @@
 
 namespace CivUser\Model;
 
-use Zend\Db\TableGateway;
+use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
 class Mapper extends TableGateway
