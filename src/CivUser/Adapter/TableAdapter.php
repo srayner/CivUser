@@ -18,7 +18,8 @@ class TableAdapter extends CallbackCheckAdapter
             $config['identifier_field'],
             $config['credential_field'],
             $callback
-        ); 
+        );
+        $this->getDbSelect()->where(array('domain' => 'local'));
     }
     
     public function getIdentityObject()
