@@ -11,9 +11,9 @@ class ChangepasswordFormFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $form = new ChangepasswordForm();
-        //$inputFilter = new ChangePasswordInputFilter();
-        $form->setHydrator(new ClassMethods);
-        //     ->setInputFilter($inputFilter);
+        $inputFilter = new ChangePasswordInputFilter();
+        $form->setHydrator(new ClassMethods)
+             ->setInputFilter($inputFilter);
         return $form; 
     }
 }
