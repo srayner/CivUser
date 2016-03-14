@@ -23,12 +23,14 @@ class TableAdapter extends CallbackCheckAdapter
     
     public function getIdentityObject()
     {
-        $fields = array('username', 'email', 'display_name');
+        $fields = array('id', 'username', 'email_address', 'display_name');
         $stdObject = $this->getResultRowObject($fields);
         $identityObject = New User();
-        $identityObject->username      = $stdObject->username;
-        $identityObject->email         = $stdObject->email;
-        $identityObject->display_name  = $stdObject->display_name;
+        $identityObject->setId($stdObject->id);
+        $identityObject->setUsername($stdObject->username);
+        $identityObject->setDomain('local');
+        $identityObject->setEmailAddress($stdObject->email_address);
+        $identityObject->setDisplayName($stdObject->display_name);
         return $identityObject;
     }
 }

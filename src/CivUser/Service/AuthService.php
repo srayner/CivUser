@@ -25,7 +25,9 @@ class AuthService
         if ($result->isValid())
         {
             $user = $this->adapter->getIdentityObject();
-            $this->mapper->persist($user);
+            if ($user->getDomain() != 'local') {
+                $this->mapper->persist($user);
+            }
             $storage = $this->service->getStorage();
             $storage->write($user);
         }

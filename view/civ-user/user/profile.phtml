@@ -1,5 +1,7 @@
 <h1>Your Profile</h1>
 
+<?php echo $this->gravatar($this->user->getEmailAddress()); ?>
+
 <div><?php echo $this->user->getDisplayName(); ?></div>
 <div><?php echo $this->user->getEmailAddress(); ?></div>
 
