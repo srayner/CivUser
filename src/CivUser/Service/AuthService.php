@@ -8,7 +8,6 @@ class AuthService
 {
     protected $adapter;
     protected $service;
-    protected $identity;
     protected $mapper;
     
     public function __construct($adapter, $mapper)
@@ -23,9 +22,12 @@ class AuthService
         $this->adapter->setIdentity($credentials['username']);
         $this->adapter->setCredential($credentials['password']);
         $result = $this->service->authenticate($this->adapter);
-        
-        if ($result->isValid()) {
-            $this->identity = $this->adapter->getIdentityObject();
+        if ($result->isValid())
+        {
+            $user = $this->adapter->getIdentityObject();
+            $this->mapper->persist($user);
+            $storage = $this->service->getStorage();
+            $storage->write($user);
         }
         return $result->isValid();
     }
@@ -43,6 +45,12 @@ class AuthService
     public function getIdentity()
     {
         return $this->service->getIdentity();
+    }
+    
+    public function getIdentityObject()
+    {
+        $storage = $this->service->getStorage();
+        return $storage->read();
     }
     
     // for testing

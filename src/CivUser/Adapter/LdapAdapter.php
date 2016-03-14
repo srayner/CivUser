@@ -28,13 +28,19 @@ class LdapAdapter extends Ldap
     
     public function getIdentityObject()
     {
-        $fields = array('id', 'username', 'email', 'display_name');
+        // Grab the account object from LDAP.
+        $fields = array('userprincipalname', 'mail', 'displayname');
         $stdObject = $this->getAccountObject($fields);
+        
+        // Extract username and domain from userprinciplename property.
+        $arr = explode("@", $stdObject->userprincipalname);
+        
+        // Hydrate and return a User object.
         $identityObject = New User();
-        $identityObject->id            = $stdObject->id;
-        $identityObject->username      = $stdObject->username;
-        $identityObject->email         = $stdObject->email;
-        $identityObject->display_name  = $stdObject->display_name;
+        $identityObject->setUsername($arr[0]);
+        $identityObject->setDomain($arr[1]);
+        $identityObject->setEmailAddress($stdObject->mail);
+        $identityObject->setDisplayName($stdObject->displayname);
         return $identityObject;
     }
 }

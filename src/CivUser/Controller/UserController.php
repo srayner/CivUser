@@ -13,12 +13,8 @@ class UserController extends AbstractActionController
             return $this->redirect()->toRoute('login');
         }
         
-        // mocking
-        $user = new \CivUser\Model\User;
-        $user->setDisplayName('Steve Rayner');
-        $user->setEmailAddress('srayner@civrays.com');
         return array(
-            'user' => $user
+            'user' => $service->getIdentityObject()
         );   
     }
     

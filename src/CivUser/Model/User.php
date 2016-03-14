@@ -49,7 +49,7 @@ class User
 
     public function setDomain($domain)
     {
-        $this->domain = $domain;
+        $this->domain = strtolower($domain);
         return $this;
     }
 
@@ -73,7 +73,7 @@ class User
 
     public function setEmailAddress($emailAddress)
     {
-        $this->emailAddress = $emailAddress;
+        $this->emailAddress = strtolower($emailAddress);
         return $this;
     }
 
