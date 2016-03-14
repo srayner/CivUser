@@ -37,6 +37,16 @@ return array(
                     ),
                 ),
             ),
+            'changepassword' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/changepassword',
+                    'defaults' => array(
+                        'controller' => 'CivUser\Controller\User',
+                        'action'     => 'changepassword',
+                    ),
+                ),
+            ),
         ),
     ),
     
@@ -60,8 +70,9 @@ return array(
             'CivUser\User' => 'CivUser\Entity\User',
         ),
         'factories' => array(
-            'CivUser\LoginForm'   => 'CivUser\Form\LoginFormFactory',
-            'CivUser\AuthService' => 'CivUser\Service\AuthServiceFactory',
+            'CivUser\LoginForm'          => 'CivUser\Form\LoginFormFactory',
+            'CivUser\ChangepasswordForm' => 'CivUser\Form\ChangepasswordFormFactory',
+            'CivUser\AuthService'        => 'CivUser\Service\AuthServiceFactory',
         ),
     ),
 );

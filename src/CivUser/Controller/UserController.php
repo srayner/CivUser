@@ -49,5 +49,29 @@ class UserController extends AbstractActionController
         return $this->redirect()->toRoute('login');
     }
     
+    public function changepasswordAction()
+    {
+        $service = $this->getServiceLocator()->get('CivUser\AuthService');
+        if (!$service->hasIdentity()) {
+            return $this->redirect()->toRoute('login');
+        }
+        
+        $form = $this->getServiceLocator()->get('CivUser\ChangepasswordForm');
+        
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $service->changepassword($request->getPost());
+                
+                // Redirect;
+                return $this->redirect()->toRoute('profile');
+            }
+        }
+        return array(
+            'form' => $form
+        );
+    }
+    
 }
 
