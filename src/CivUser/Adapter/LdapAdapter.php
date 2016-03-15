@@ -40,8 +40,13 @@ class LdapAdapter extends Ldap
         $identityObject->setUsername($arr[0]);
         $identityObject->setDomain($arr[1]);
         $identityObject->setPassword('');
-        $identityObject->setEmailAddress($stdObject->mail);
-        $identityObject->setDisplayName($stdObject->displayname);
+        if (property_exists($stdObject, 'mail')) {
+            $identityObject->setEmailAddress($stdObject->mail);
+        }
+        $identityObject->setDisplayName($arr[0]);
+        if (property_exists($stdObject, 'mail')) {
+            $identityObject->setDisplayName($stdObject->displayname);
+        }
         return $identityObject;
     }
 }

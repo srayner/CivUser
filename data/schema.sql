@@ -6,3 +6,4 @@ CREATE TABLE `civ_user` (
   `email_address` varchar(255),
   `display_name`  varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE CIV_USER ADD CONSTRAINT constr_identity UNIQUE (domain, username)

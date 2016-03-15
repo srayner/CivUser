@@ -4,10 +4,13 @@ namespace CivUser\Service;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Db\ResultSet\HydratingResultSet;
+use Zend\Stdlib\Hydrator\ClassMethods;
 
 use CivUser\Adapter\TableAdapter;
 use CivUser\Adapter\LdapAdapter;
 use CivUser\Model\Mapper;
+use CivUser\Model\User;
 
 
 class AuthServiceFactory implements FactoryInterface
@@ -31,7 +34,8 @@ class AuthServiceFactory implements FactoryInterface
             throw new Exception('No auth adapter supplied by application configuration.');
         }
         
-        $mapper = new Mapper('civ_user', $dbAdapter);
+        $hydratingResultSet = New HydratingResultSet(New ClassMethods, New User);
+        $mapper = new Mapper('civ_user', $dbAdapter, null, $hydratingResultSet);
         return new AuthService($authAdapter, $mapper);
     }  
 }

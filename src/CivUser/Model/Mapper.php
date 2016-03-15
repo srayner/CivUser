@@ -10,9 +10,9 @@ class Mapper extends TableGateway
     public function persist($user)
     {
         if ($user->getDomain() == 'local') {
-            return $this->persistLocal();
+            return $this->persistLocal($user);
         }
-        return $this->persistDomain();
+        return $this->persistDomain($user);
     }
     
     private function persistLocal($user)
@@ -29,14 +29,27 @@ class Mapper extends TableGateway
     
     private function persistDomain($user)
     {
-        $hydrator = new ClassMethods;
-        $data = $hydrator->extract($user);
         
         // Check if this user already exists
+        $result = $this->select(array(
+                           'domain' => $user->getDomain(),
+                           'username' => $user->getUserName()
+                       ));
+        $object = $result->current();
         
         // if yes then update
+        if ($object) {
+            $user->setId($object->getId());
+            $hydrator = new ClassMethods;
+            $data = $hydrator->extract($user);
+            return parent::update($data, array('id' => $user->getId()));
+        }
         
         // otherwise insert.
-        
+        $hydrator = new ClassMethods;
+        $data = $hydrator->extract($user);
+        $result = parent::insert($data);
+        $user->setId($this->getLastInsertValue());
+        return $result;
     }
 }
