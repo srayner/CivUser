@@ -8,6 +8,8 @@
 <div><?php echo $this->user->getUsername(); ?></div>
 <div><?php echo $this->user->getDomain(); ?></div>
 
+<div><?php echo $this->user->getId(); ?></div>
+
 <hr>
 <a class="btn btn-sm btn-default" href="<?php echo $this->url('changepassword'); ?>">Change Password</a>
 <a class="btn btn-sm btn-primary" href="<?php echo $this->url('logout'); ?>">Logout</a>
