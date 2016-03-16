@@ -1,14 +1,31 @@
 <h1>Your Profile</h1>
 
-<?php echo $this->gravatar($this->user->getEmailAddress()); ?>
-
-<div><?php echo $this->user->getDisplayName(); ?></div>
-<div><?php echo $this->user->getEmailAddress(); ?></div>
-
-<div><?php echo $this->user->getUsername(); ?></div>
-<div><?php echo $this->user->getDomain(); ?></div>
-
-<div><?php echo $this->user->getId(); ?></div>
+<div class="media">
+    <div class="media-left">
+      <?php echo $this->gravatar($this->user->getEmailAddress()); ?>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading"><?php echo $this->user->getDisplayName(); ?></h4>
+        <div><?php echo $this->user->getEmailAddress(); ?></div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-4">
+        <table class="table table-condensed table-striped">
+            <tbody>
+                <tr>
+                    <th>Username</th>
+                    <td><?php echo $this->user->getUsername(); ?></td>
+                <tr>
+                    <th>Domain</th>
+                    <td><?php echo $this->user->getDomain(); ?></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+</div>
 
 <hr>
 <a class="btn btn-sm btn-default" href="<?php echo $this->url('changepassword'); ?>">Change Password</a>
