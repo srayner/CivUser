@@ -62,4 +62,15 @@ class AuthService
     }
     
     
+    public function changePassword($oldPassword, $newPassword)
+    {
+        // grab existing user object from db
+        
+        // verify existing password matches
+        
+        // if ok, update password and persist.
+        
+        // return true for ok, false otherwise
+    }
+    
 }

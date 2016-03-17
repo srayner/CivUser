@@ -19,7 +19,7 @@ class UserController extends AbstractActionController
     }
     
     public function loginAction()
-    {   
+    {
         $form = $this->getServiceLocator()->get('CivUser\LoginForm');
         $message = null;
         $request = $this->getRequest();
