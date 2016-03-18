@@ -7,6 +7,12 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 
 class Mapper extends TableGateway
 {
+    
+    public function findById($id)
+    {
+        return $this->select(array('id' => $id))->current();
+    }
+    
     public function persist($user)
     {
         if ($user->getDomain() == 'local') {

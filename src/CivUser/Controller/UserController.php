@@ -62,6 +62,7 @@ class UserController extends AbstractActionController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
+                
                 $service->changepassword($request->getPost());
                 
                 // Redirect;

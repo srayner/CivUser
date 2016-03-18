@@ -62,12 +62,19 @@ class AuthService
     }
     
     
-    public function changePassword($oldPassword, $newPassword)
+    public function changePassword($passwords)
     {
+        $identity = $this->getIdentity();
+          
         // grab existing user object from db
+        $user = $this->mapper->findById($identity->getId());
         
         // verify existing password matches
-        
+        if (password_verify($passwords['current_password'], $user->getPassword())) {
+          die('ok');
+        }
+        die('not ok');
+                
         // if ok, update password and persist.
         
         // return true for ok, false otherwise
