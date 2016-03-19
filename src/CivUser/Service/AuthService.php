@@ -6,6 +6,10 @@ use Zend\Authentication\AuthenticationService as AuthService;
 
 class AuthService
 {
+    const PASSWORD_CHANGED = 0;
+    const BAD_PASSWORD     = 1;
+    const BAD_CONFIRMATION = 2;
+    
     protected $adapter;
     protected $service;
     protected $mapper;
@@ -66,18 +70,23 @@ class AuthService
     {
         $identity = $this->getIdentity();
           
-        // grab existing user object from db
+        // Grab existing user object from db.
         $user = $this->mapper->findById($identity->getId());
         
-        // verify existing password matches
-        if (password_verify($passwords['current_password'], $user->getPassword())) {
-          die('ok');
+        // verify existing password matches.
+        if (!password_verify($passwords['current_password'], $user->getPassword())) {
+            return BAD_PASSWORD;
         }
-        die('not ok');
-                
-        // if ok, update password and persist.
         
-        // return true for ok, false otherwise
+        // verify new password and confirmation match.
+        if ($passwords['new_password'] !== $passwords['confirm_password']) {
+            return BAD_CONFIRMATION;
+        }
+                
+        // update password and persist.
+        $user->setPassword(password_hash($passwords['new_password'], PASSWORD_DEFAULT));
+        $this->mapper->persist($user);
+        return PASSWORD_CHANGED;
     }
     
 }

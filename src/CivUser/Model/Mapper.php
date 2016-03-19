@@ -25,11 +25,13 @@ class Mapper extends TableGateway
     {
         $hydrator = new ClassMethods;
         $data = $hydrator->extract($user);
-        if (!$user->getId()) {
+        if (is_null($user->getId())) {
+            die('insert');
             $result = parent::insert($data);
             $user->setId($this->getLastInsertValue());
             return $result;
         }
+        die('update');
         return parent::update($data, $user->getId());
     }
     
