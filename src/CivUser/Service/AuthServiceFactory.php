@@ -17,25 +17,27 @@ class AuthServiceFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $authAdapter = null;
         $dbAdapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
         
-        $config = $serviceLocator->get('Config')['civuser']['adapter'];
-        
-        if ($config['type'] == 'dbtable') {
-            $authAdapter = new TableAdapter($dbAdapter, $config);
+        // Create the auth adapter.
+        $authAdapter = null;
+        $adapterConfig     = $serviceLocator->get('Config')['civuser']['adapter'];   
+        if ($adapterConfig['type'] == 'dbtable') {
+            $authAdapter = new TableAdapter($dbAdapter, $adapterConfig);
         }
-        
-        if ($config['type'] == 'ldap') {
-            $authAdapter = new LdapAdapter($config);
+        if ($adapterConfig['type'] == 'ldap') {
+            $authAdapter = new LdapAdapter($adapterConfig);
         }
-
         if (!$authAdapter) {
-            throw new Exception('No auth adapter supplied by application configuration.');
+            throw new \Exception('No auth adapter supplied by application configuration.');
         }
         
+        // Create the persistance mapper.
+        $mapperConfig = $serviceLocator->get('Config')['civuser']['persistance'];
         $hydratingResultSet = New HydratingResultSet(New ClassMethods, New User);
-        $mapper = new Mapper('civ_user', $dbAdapter, null, $hydratingResultSet);
+        $mapper = new Mapper($mapperConfig['table'], $dbAdapter, null, $hydratingResultSet);
+        
+        // Return the service.
         return new AuthService($authAdapter, $mapper);
     }  
 }

@@ -3,14 +3,24 @@
 return array(
 
     'civuser' => array(
-        'adapter' => array(
+        
+        // Example of persistance config.
+        'persistance' => array(
             'type' => 'dbtable',
-            'table' => 'user',
-            'identifier_field' => 'username',
-            'credential_field' => 'password',
+            'table' => 'civ_user'
         ),
-        'ldap_adapter' => array(
-            'type' => 'ldap',
+        
+        // Example of tbtable auth adapter
+        'adapter' => array(
+            'type'             => 'dbtable',
+            'table'            => 'civ_user',
+            'identifier_field' => 'username',
+            'credential_field' => 'password'
+        ),
+        
+        // Example of LDAP auth adapter
+        'adapter' => array(
+            'type'                   => 'ldap',
             'host'                   => 'server.your.net',
             'port'                   => '389',
             'useStartTls'            => false,
