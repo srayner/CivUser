@@ -44,7 +44,7 @@ class ChangepasswordForm extends Form
         
         // Submit button.
         $submit = new Element\Submit('submit');
-        $submit->setValue('Login');
+        $submit->setValue('O.K.');
         $submit->setAttributes(array(
             'id'    => 'submit',
             'class' => 'btn btn-sm btn-primary'
