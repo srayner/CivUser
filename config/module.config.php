@@ -9,6 +9,7 @@ return array(
         'routes' => array(
             'login' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
+                'priority' => 100,
                 'options' => array(
                     'route'    => '/login',
                     'defaults' => array(
@@ -19,6 +20,7 @@ return array(
             ),
             'logout' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
+                'priority' => 100,
                 'options' => array(
                     'route'    => '/logout',
                     'defaults' => array(
@@ -29,6 +31,7 @@ return array(
             ),
             'profile' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
+                'priority' => 100,
                 'options' => array(
                     'route'    => '/profile',
                     'defaults' => array(
@@ -39,6 +42,7 @@ return array(
             ),
             'changepassword' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
+                'priority' => 100,
                 'options' => array(
                     'route'    => '/changepassword',
                     'defaults' => array(
