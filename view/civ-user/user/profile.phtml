@@ -5,7 +5,7 @@
       <?php echo $this->gravatar($this->Identity()->getEmailAddress()); ?>
     </div>
     <div class="media-body">
-        <h4 class="media-heading"><?php $this->Identity()->getDisplayName(); ?></h4>
+        <h4 class="media-heading"><?php echo $this->Identity()->getDisplayName(); ?></h4>
         <div><?php echo $this->Identity()->getEmailAddress(); ?></div>
     </div>
 </div>
