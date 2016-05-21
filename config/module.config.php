@@ -61,6 +61,13 @@ return array(
         ),
     ),
     
+    // View helpers
+    'view_helpers' => array(
+        'factories' => array(
+            'Identity' => 'CivUser\View\Helper\IdentityFactory',
+        )
+    ),
+    
     // View config.
     'view_manager' => array(
         'template_path_stack' => array(

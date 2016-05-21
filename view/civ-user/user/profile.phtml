@@ -2,11 +2,11 @@
 
 <div class="media">
     <div class="media-left">
-      <?php echo $this->gravatar($this->user->getEmailAddress()); ?>
+      <?php echo $this->gravatar($this->Identity()->getEmailAddress()); ?>
     </div>
     <div class="media-body">
-        <h4 class="media-heading"><?php echo $this->user->getDisplayName(); ?></h4>
-        <div><?php echo $this->user->getEmailAddress(); ?></div>
+        <h4 class="media-heading"><?php $this->Identity()->getDisplayName(); ?></h4>
+        <div><?php echo $this->Identity()->getEmailAddress(); ?></div>
     </div>
 </div>
 <br>
@@ -16,10 +16,10 @@
             <tbody>
                 <tr>
                     <th>Username</th>
-                    <td><?php echo $this->user->getUsername(); ?></td>
+                    <td><?php echo $this->Identity()->getUsername(); ?></td>
                 <tr>
                     <th>Domain</th>
-                    <td><?php echo $this->user->getDomain(); ?></td>
+                    <td><?php echo $this->Identity()->getDomain(); ?></td>
                 </tr>
             </tbody>
         </table>

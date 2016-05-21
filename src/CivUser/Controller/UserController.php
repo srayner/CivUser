@@ -13,9 +13,7 @@ class UserController extends AbstractActionController
             return $this->redirect()->toRoute('login');
         }
         
-        return array(
-            'user' => $service->getIdentityObject()
-        );   
+        return array();   
     }
     
     public function loginAction()
