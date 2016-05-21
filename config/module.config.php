@@ -64,7 +64,8 @@ return array(
     // View helpers
     'view_helpers' => array(
         'factories' => array(
-            'Identity' => 'CivUser\View\Helper\IdentityFactory',
+            'Identity'    => 'CivUser\View\Helper\IdentityFactory',
+            'ProfileLink' => 'CivUser\View\Helper\ProfileLinkFactory',
         )
     ),
     
