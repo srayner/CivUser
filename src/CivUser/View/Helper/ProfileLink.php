@@ -20,7 +20,7 @@ class ProfileLink extends AbstractHelper
             $link = $this->view->url('profile'); 
         } else {
             $text = 'Login';
-            $link = $this->view->url('profile');
+            $link = $this->view->url('login');
         }
         
         $result = "<a href=\"$link\">$text</a>";
