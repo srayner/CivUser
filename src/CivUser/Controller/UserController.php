@@ -3,6 +3,7 @@
 namespace CivUser\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\Container;
 
 class UserController extends AbstractActionController
 {
@@ -28,7 +29,7 @@ class UserController extends AbstractActionController
                 $credentials = $form->getData();
                 if ($service->authenticate($credentials)) {
                     // redirect
-                    return $this->redirect()->toRoute('profile');
+                    return $this->redirect()->toUrl($this->redirectUrl());
                 }
                 $message = 'Login failed. Invalid credentials.';
             }
@@ -74,6 +75,17 @@ class UserController extends AbstractActionController
         return array(
             'form' => $form
         );
+    }
+    
+    private function redirectUrl()
+    {
+        $container = new Container('redirect');
+        $result = '/profile';
+        if ($container->url) {
+            $result = $container->url;
+            $container->url = null;
+        }
+        return $result;
     }
     
 }
