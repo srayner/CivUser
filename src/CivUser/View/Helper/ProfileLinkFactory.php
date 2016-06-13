@@ -16,6 +16,7 @@ class ProfileLinkFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceManager)
     {
         $locator = $serviceManager->getServiceLocator();
-        return new ProfileLink($locator->get('CivUser\AuthService'));
+        $config = $locator->get('config')['civuser']['profile_link'];
+        return new ProfileLink($locator->get('CivUser\AuthService'), $config);
     }   
 }

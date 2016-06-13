@@ -7,10 +7,12 @@ use Zend\View\Helper\AbstractHelper;
 class ProfileLink extends AbstractHelper
 {
     protected $authService;
+    protected $config;
     
-    public function __construct($authService)
+    public function __construct($authService, $config)
     {
         $this->authService = $authService;
+        $this->config = $config;
     }
     
     public function __invoke()
@@ -23,7 +25,9 @@ class ProfileLink extends AbstractHelper
             $link = $this->view->url('login');
         }
         
-        $result = "<a href=\"$link\">$text</a>";
+        $class = $this->config['class'];
+        
+        $result = "<a class=\"$class\" href=\"$link\">$text</a>";
         return $result;
     }   
 }
