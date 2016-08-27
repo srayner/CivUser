@@ -1,3 +1,8 @@
+[![Latest Stable Version](https://poser.pugx.org/srayner/civuser/v/stable)](https://packagist.org/packages/srayner/civuser)
+[![Total Downloads](https://poser.pugx.org/srayner/civuser/downloads)](https://packagist.org/packages/srayner/civuser)
+[![Latest Unstable Version](https://poser.pugx.org/srayner/civuser/v/unstable)](https://packagist.org/packages/srayner/civuser)
+[![License](https://poser.pugx.org/srayner/civuser/license)](https://packagist.org/packages/srayner/civuser)
+
 CivUser - Authentication Module
 ===============================
 
