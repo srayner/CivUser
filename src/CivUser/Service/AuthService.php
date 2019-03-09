@@ -2,7 +2,7 @@
 
 namespace CivUser\Service;
 
-use Zend\Authentication\AuthenticationService as AuthService;
+use Zend\Authentication\AuthenticationService;
 
 class AuthService
 {
@@ -18,7 +18,7 @@ class AuthService
     {
         $this->mapper = $mapper;
         $this->adapter = $adapter;
-        $this->service = new AuthService();
+        $this->service = new AuthenticationService();
     }
 
     public function authenticate($credentials)
